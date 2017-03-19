@@ -1,6 +1,7 @@
 hotspring
 -----------
 <img src="https://raw.githubusercontent.com/BrewOpsHQ/hotspring/master/hotspring-logo.png" align="right" height=175 width=175>
+
 Create a SPA with hotspring. Hotspring is a Go based SPA (single page web application) 
 server.
 

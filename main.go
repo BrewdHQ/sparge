@@ -1,10 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"regexp"
-
-	"fmt"
 
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"

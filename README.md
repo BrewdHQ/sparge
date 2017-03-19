@@ -49,7 +49,7 @@ NAME:
    hotspring - A SPA (single-page application) server
 
 USAGE:
-   hotspring.exe [global options] command [command options] [arguments...]
+   hotspring [global options] command [command options] [arguments...]
 
 VERSION:
    1.0.0
@@ -67,10 +67,10 @@ Start:
 ```bash
 $ hotspring help start
 NAME:
-   hotspring.exe start - Start the SPA server
+   hotspring start - Start the SPA server
 
 USAGE:
-   hotspring.exe start [command options] [arguments...]
+   hotspring start [command options] [arguments...]
 
 OPTIONS:
    --dir value, -d value   (default: "./public")

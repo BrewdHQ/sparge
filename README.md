@@ -1,7 +1,21 @@
 hotspring
 -----------
 <img src="https://raw.githubusercontent.com/BrewOpsHQ/hotspring/master/hotspring-logo.png" align="right" height=175 width=175>
-Create a SPA with hotspring. Hotspring is a Go based SPA (single page web application) server.
+Create a SPA with hotspring. Hotspring is a Go based SPA (single page web application) 
+server.
+
+The purpose of hotspring is to allow single page frameworks like Aurelia, 
+Angular, and React to use "pretty urls" (urls without the #) by serving the index.html
+file from the assets directory whenever a static file is not found. Hotspring will,
+however, return 404 if an extension is used in the path, such as `favicon.png`, and 
+that file is not found.
+
+1. Look for the path in the assets directory and return that static asset if it exists.
+2. If the path contains no extension (e.g., `.html`, `.png`, `.jpg`), then return `index.html`
+from the assets directory.
+3. Otherwise, return a 404.
+
+## Dependencies
 
 Hotspring is built with the following dependencies:
 - [gin](https://github.com/gin-gonic/gin) 

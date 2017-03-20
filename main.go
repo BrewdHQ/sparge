@@ -14,7 +14,6 @@ func start(dir string, port int) {
 	hasExtension := regexp.MustCompile(`\.[^\/]+$`)
 
 	router := gin.Default()
-	router.Use()
 	router.Use(static.Serve("/", static.LocalFile("./public", false)))
 	router.NoRoute(func(c *gin.Context) {
 		if !hasExtension.MatchString(c.Request.URL.Path) {

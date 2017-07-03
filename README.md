@@ -79,7 +79,12 @@ to specifiy an alternate directory as needed.
 
 ## Version History
 
-### 1.0.0
+### 0.2.0
+
+- Switched from gin-gonic to echo
+- Added a startup banner
+
+### 0.1.0
 
 The first version
 

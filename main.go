@@ -10,10 +10,24 @@ import (
 	"github.com/urfave/cli"
 )
 
+const (
+	version = "0.3.0"
+	banner  = `
+ _____ _____ _____             
+|   __|  _  |  _  |___ ___ ___ 
+|__   |   __|     |  _| . | -_|
+|_____|__|  |__|__|_| |_  |___| %s
+                      |___|
+Single Page Application server  ________
+_______________________________/__\__\__\
+                               \__/__/__/
+
+`
+)
 
 func start(root string, port int) {
 	e := echo.New()
-	// e.HideBanner = true
+	e.HideBanner = true
 	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
 		Root:   root,
 		Index:  "index.html",
@@ -21,7 +35,10 @@ func start(root string, port int) {
 		Browse: false,
 	}))
 
+	fmt.Printf(banner, "v"+version)
+	fmt.Printf("» http server started on port %d\n", port)
 	e.Use(middleware.Logger())
+
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", port)))
 }
 

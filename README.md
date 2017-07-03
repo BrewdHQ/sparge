@@ -1,13 +1,11 @@
-hotspring
------------
-<img src="https://raw.githubusercontent.com/BrewOpsHQ/hotspring/master/hotspring-logo.png" align="right" height=175 width=175>
-
-Create a SPA with hotspring. Hotspring is a Go based SPA (single page web application) 
+sparge
+------
+Sparge is a Go based SPA (single page web application) 
 server.
 
-The purpose of hotspring is to allow single page frameworks like Aurelia, 
+The purpose of sparge is to allow single page frameworks like Aurelia, 
 Angular, and React to use "pretty urls" (urls without the #) by serving the index.html
-file from the assets directory whenever a static file is not found. Hotspring will,
+file from the assets directory whenever a static file is not found. Sparge will,
 however, return 404 if an extension is used in the path, such as `favicon.png`, and 
 that file is not found.
 
@@ -18,38 +16,37 @@ from the assets directory.
 
 ## Dependencies
 
-Hotspring is built with the following dependencies:
-- [gin](https://github.com/gin-gonic/gin) 
-- [gin-contrib/static](https://github.com/gin-contrib/static)
+Sparge is built with the following dependencies:
+- [labstack/echo](https://github.com/labstack/echo)
 - [urfave/cli](https://github.com/urfave/cli)
 - [glide](https://github.com/Masterminds/glide)
 
 ## Build
 
-The following are instructions to build the hotspring binary. This project uses
+The following are instructions to build the sparge binary. This project uses
 [glide]() to manage dependencies.
 
 ```bash
 $ cd $GOPATH
-$ go get github.com/BrewOpsHQ/hotspring
-$ cd hotspring
-$ cd src/BrewOpsHQ/hotspring
+$ go get github.com/BrewdHQ/sparge
+$ cd sparge
+$ cd src/BrewdHQ/sparge
 $ glide install
 $ go build
 ```
 
 ## Usage
 
-Put `hostpring` in your path and run `hotspring help` for commands and flags. 
+Put `sparge` in your path and run `sparge help` for commands and flags. 
 
 Commands:
 ```bash
-$ hotspring help
+$ sparge help
 NAME:
-   hotspring - A SPA (single-page application) server
+   sparge - A SPA (single-page application) server
 
 USAGE:
-   hotspring [global options] command [command options] [arguments...]
+   sparge [global options] command [command options] [arguments...]
 
 VERSION:
    1.0.0
@@ -65,19 +62,19 @@ GLOBAL OPTIONS:
 
 Start:
 ```bash
-$ hotspring help start
+$ sparge help start
 NAME:
-   hotspring start - Start the SPA server
+   sparge start - Start the SPA server
 
 USAGE:
-   hotspring start [command options] [arguments...]
+   sparge start [command options] [arguments...]
 
 OPTIONS:
    --dir value, -d value   (default: "./public")
    --port value, -p value  (default: "8080")
 ```
 
-Hotspring will serve assets from the `./public` directory by default. Be sure
+Sparge will serve assets from the `./public` directory by default. Be sure
 to specifiy an alternate directory as needed.
 
 ## Version History

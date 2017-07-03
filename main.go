@@ -44,7 +44,7 @@ func start(root string, port int) {
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "hotspring"
+	app.Name = "sparge"
 	app.Usage = "A SPA (single-page application) server"
 	app.Version = "1.0.0"
 

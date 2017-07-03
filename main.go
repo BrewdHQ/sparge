@@ -3,24 +3,43 @@ package main
 import (
 	"fmt"
 	"os"
-	"regexp"
 
-	"github.com/gin-contrib/static"
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
+
 	"github.com/urfave/cli"
 )
 
-func start(dir string, port int) {
-	hasExtension := regexp.MustCompile(`\.[^\/]+$`)
+const (
+	version = "0.3.0"
+	banner  = `
+ _____ _____ _____             
+|   __|  _  |  _  |___ ___ ___ 
+|__   |   __|     |  _| . | -_|
+|_____|__|  |__|__|_| |_  |___| %s
+                      |___|
+Single Page Application server  ________
+_______________________________/__\__\__\
+                               \__/__/__/
 
-	router := gin.Default()
-	router.Use(static.Serve("/", static.LocalFile("./public", false)))
-	router.NoRoute(func(c *gin.Context) {
-		if !hasExtension.MatchString(c.Request.URL.Path) {
-			c.File("./public/index.html")
-		}
-	})
-	router.Run(fmt.Sprintf(":%d", port))
+`
+)
+
+func start(root string, port int) {
+	e := echo.New()
+	e.HideBanner = true
+	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
+		Root:   root,
+		Index:  "index.html",
+		HTML5:  true,
+		Browse: false,
+	}))
+
+	fmt.Printf(banner, "v"+version)
+	fmt.Printf("» http server started on port %d\n", port)
+	e.Use(middleware.Logger())
+
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", port)))
 }
 
 func main() {

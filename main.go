@@ -46,7 +46,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "sparge"
 	app.Usage = "A SPA (single-page application) server"
-	app.Version = "1.0.0"
+	app.Version = version
 
 	app.Flags = []cli.Flag{}
 

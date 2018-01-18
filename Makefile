@@ -1,4 +1,5 @@
 BINARY=sparge
+VERSION=1.0.0
 
 glide-update:
 	glide cc; glide update

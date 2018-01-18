@@ -1,8 +1,8 @@
 package: github.com/BrewdHQ/sparge
 import:
 - package: github.com/urfave/cli
-  version: ^1.19.1
+  version: ^1.20.0
 - package: github.com/labstack/echo
-  version: ^3.2.1
+  version: ^3.2.6
   subpackages:
   - '...'

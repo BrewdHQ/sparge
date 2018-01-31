@@ -1,5 +1,6 @@
 BINARY=sparge
-VERSION=1.0.0
+VERSION=1.0.1
+LDFLAGS=-ldflags "-X main.version=$(VERSION)"
 
 glide-update:
 	glide cc; glide update
@@ -8,10 +9,13 @@ build:
 	go build -o $(BINARY) main.go
 
 build-linux:
-	GOOS=linux CGO_ENABLED=0 go build -o $(BINARY) main.go
+	GOOS=linux CGO_ENABLED=0 go build $(LDFLAGS) -o $(BINARY) main.go
 
-docker-build: glide-update build-linux
+docker-build: clean glide-update build-linux
 	docker build -t brewd/sparge:$(VERSION) .
 	docker image tag brewd/sparge:$(VERSION) brewd/sparge:latest
 
-.PHONY: glide-update build build-linux docker-build
+clean:
+	rm $(BINARY)
+
+.PHONY: glide-update build build-linux docker-build clean

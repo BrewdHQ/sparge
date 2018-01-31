@@ -11,8 +11,7 @@ import (
 )
 
 const (
-	version = "0.3.0"
-	banner  = `
+	banner = `
  _____ _____ _____             
 |   __|  _  |  _  |___ ___ ___ 
 |__   |   __|     |  _| . | -_|
@@ -25,9 +24,14 @@ _______________________________/__\__\__\
 `
 )
 
-func start(root string, port int) {
+// version set by LDFLAGS
+var version string
+
 	e := echo.New()
 	e.HideBanner = true
+
+	e.Use(middleware.Logger())
+
 	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
 		Root:   root,
 		Index:  "index.html",
@@ -37,7 +41,6 @@ func start(root string, port int) {
 
 	fmt.Printf(banner, "v"+version)
 	fmt.Printf("» http server started on port %d\n", port)
-	e.Use(middleware.Logger())
 
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", port)))
 }

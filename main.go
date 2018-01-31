@@ -27,6 +27,7 @@ _______________________________/__\__\__\
 // version set by LDFLAGS
 var version string
 
+func start(root string, port int, origins []string) {
 	e := echo.New()
 	e.HideBanner = true
 
@@ -38,6 +39,12 @@ var version string
 		HTML5:  true,
 		Browse: false,
 	}))
+
+	if len(origins) > 0 {
+		e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+			AllowOrigins: origins,
+		}))
+	}
 
 	fmt.Printf(banner, "v"+version)
 	fmt.Printf("» http server started on port %d\n", port)
@@ -58,7 +65,9 @@ func main() {
 			Name:  "start",
 			Usage: "Start the SPA server",
 			Action: func(c *cli.Context) error {
-				start(c.String("dir"), c.Int("port"))
+				origins := c.StringSlice("allow-origins")
+				fmt.Printf("%v\n", origins)
+				start(c.String("dir"), c.Int("port"), c.StringSlice("allow-origins"))
 				return nil
 			},
 			Flags: []cli.Flag{
@@ -69,6 +78,9 @@ func main() {
 				cli.StringFlag{
 					Name:  "port, p",
 					Value: "8080",
+				},
+				cli.StringSliceFlag{
+					Name: "allow-origins, o",
 				},
 			},
 		},

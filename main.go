@@ -11,8 +11,7 @@ import (
 )
 
 const (
-	version = "0.3.0"
-	banner  = `
+	banner = `
  _____ _____ _____             
 |   __|  _  |  _  |___ ___ ___ 
 |__   |   __|     |  _| . | -_|
@@ -25,7 +24,9 @@ _______________________________/__\__\__\
 `
 )
 
-func start(root string, port int) {
+// version set by LDFLAGS
+var version string
+
 	e := echo.New()
 	e.HideBanner = true
 	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{

@@ -10,8 +10,11 @@ build:
 build-linux:
 	GOOS=linux CGO_ENABLED=0 go build -o $(BINARY) main.go
 
-docker-build: glide-update build-linux
+docker-build: clean glide-update build-linux
 	docker build -t brewd/sparge:$(VERSION) .
 	docker image tag brewd/sparge:$(VERSION) brewd/sparge:latest
 
-.PHONY: glide-update build build-linux docker-build
+clean:
+	rm $(BINARY)
+
+.PHONY: glide-update build build-linux docker-build clean

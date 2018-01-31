@@ -65,8 +65,6 @@ func main() {
 			Name:  "start",
 			Usage: "Start the SPA server",
 			Action: func(c *cli.Context) error {
-				origins := c.StringSlice("allow-origins")
-				fmt.Printf("%v\n", origins)
 				start(c.String("dir"), c.Int("port"), c.StringSlice("allow-origins"))
 				return nil
 			},

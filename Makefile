@@ -16,6 +16,6 @@ docker-build: clean glide-update build-linux
 	docker image tag brewd/sparge:$(VERSION) brewd/sparge:latest
 
 clean:
-	rm $(BINARY)
+	rm -f $(BINARY)
 
 .PHONY: glide-update build build-linux docker-build clean

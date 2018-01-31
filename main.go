@@ -65,22 +65,26 @@ func main() {
 			Name:  "start",
 			Usage: "Start the SPA server",
 			Action: func(c *cli.Context) error {
-				origins := c.StringSlice("allow-origins")
-				fmt.Printf("%v\n", origins)
 				start(c.String("dir"), c.Int("port"), c.StringSlice("allow-origins"))
 				return nil
 			},
 			Flags: []cli.Flag{
 				cli.StringFlag{
-					Name:  "dir, d",
-					Value: "./public",
+					Name:   "dir, d",
+					Value:  "./public",
+					Usage:  "Directory from which to serve files.",
+					EnvVar: "SPARGE_DIR",
 				},
 				cli.StringFlag{
-					Name:  "port, p",
-					Value: "8080",
+					Name:   "port, p",
+					Value:  "8080",
+					Usage:  "Server port.",
+					EnvVar: "SPARGE_PORT",
 				},
 				cli.StringSliceFlag{
-					Name: "allow-origins, o",
+					Name:   "allow-origins, o",
+					Usage:  "Comma separated list of origins or set with multiple params.",
+					EnvVar: "SPARGE_ORIGINS",
 				},
 			},
 		},

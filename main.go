@@ -74,13 +74,16 @@ func main() {
 				cli.StringFlag{
 					Name:  "dir, d",
 					Value: "./public",
+					Usage: "Directory from which to serve files.",
 				},
 				cli.StringFlag{
 					Name:  "port, p",
 					Value: "8080",
+					Usage: "Server port.",
 				},
 				cli.StringSliceFlag{
-					Name: "allow-origins, o",
+					Name:  "allow-origins, o",
+					Usage: "Comma separated list of origins or set with multiple params.",
 				},
 			},
 		},

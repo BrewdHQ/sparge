@@ -1,4 +1,5 @@
 BINARY=sparge
+VERSION=1.0.1
 LDFLAGS=-ldflags "-X main.version=$(VERSION)"
 
 glide-update:

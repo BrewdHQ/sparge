@@ -79,6 +79,11 @@ to specifiy an alternate directory as needed.
 
 ## Version History
 
+### 1.5.0
+
+- Use the lastest from echo server master branch
+  - Fixes bug with https redirect loop when server is behind a proxy
+
 ### 1.4.0
 
 - Added flag and env var to specify the log format. See [Echo Logger Middleware](https://echo.labstack.com/middleware/logger) for details on formatting.

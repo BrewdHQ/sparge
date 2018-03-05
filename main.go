@@ -27,11 +27,15 @@ _______________________________/__\__\__\
 // version set by LDFLAGS
 var version string
 
-func start(root string, port int) {
+func start(root string, port int, redirectHttps bool) {
 	e := echo.New()
 	e.HideBanner = true
 
 	e.Use(middleware.Logger())
+
+	if redirectHttps {
+		e.Pre(middleware.HTTPSRedirect())
+	}
 
 	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
 		Root:   root,
@@ -59,7 +63,7 @@ func main() {
 			Name:  "start",
 			Usage: "Start the SPA server",
 			Action: func(c *cli.Context) error {
-				start(c.String("dir"), c.Int("port"))
+				start(c.String("dir"), c.Int("port"), c.Bool("https-redirect"))
 				return nil
 			},
 			Flags: []cli.Flag{
@@ -74,6 +78,11 @@ func main() {
 					Value:  "8080",
 					Usage:  "Server port.",
 					EnvVar: "SPARGE_PORT",
+				},
+				cli.BoolFlag{
+					Name:   "https-redirect",
+					Usage:  "Use to force http to redirect to https",
+					EnvVar: "SPARGE_HTTPS_REDIRECT",
 				},
 			},
 		},

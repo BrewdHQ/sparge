@@ -3,6 +3,9 @@ import:
 - package: github.com/urfave/cli
   version: ^1.20.0
 - package: github.com/labstack/echo
-  version: ^3.2.6
+  # TODO: restore version number after next echo release
+  # below is the previous release version used
+  # version: ^3.2.6
+  version: 3cdcc65b23540bffa1d271a22e77014f627de569
   subpackages:
   - '...'

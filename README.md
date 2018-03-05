@@ -79,6 +79,15 @@ to specifiy an alternate directory as needed.
 
 ## Version History
 
+### 1.3.0
+
+- Added redirect-https flag
+- Removed CORS (doesn't make sense for the SPA server, should be handled on the API server)
+
+### 1.2.0
+
+- Allow settings to be configured with environment variables
+
 ### 0.2.0
 
 - Switched from gin-gonic to echo

@@ -79,6 +79,10 @@ to specifiy an alternate directory as needed.
 
 ## Version History
 
+### 1.4.0
+
+- Added flag and env var to specify the log format. See [Echo Logger Middleware](https://echo.labstack.com/middleware/logger) for details on formatting.
+
 ### 1.3.0
 
 - Added redirect-https flag

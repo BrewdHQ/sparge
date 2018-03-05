@@ -27,11 +27,13 @@ _______________________________/__\__\__\
 // version set by LDFLAGS
 var version string
 
-func start(root string, port int, redirectHttps bool) {
+func start(root string, port int, redirectHttps bool, logFormat string) {
 	e := echo.New()
 	e.HideBanner = true
 
-	e.Use(middleware.Logger())
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: logFormat,
+	}))
 
 	if redirectHttps {
 		e.Pre(middleware.HTTPSRedirect())
@@ -63,7 +65,7 @@ func main() {
 			Name:  "start",
 			Usage: "Start the SPA server",
 			Action: func(c *cli.Context) error {
-				start(c.String("dir"), c.Int("port"), c.Bool("https-redirect"))
+				start(c.String("dir"), c.Int("port"), c.Bool("https-redirect"), c.String("log-format")+"\n")
 				return nil
 			},
 			Flags: []cli.Flag{
@@ -83,6 +85,15 @@ func main() {
 					Name:   "https-redirect",
 					Usage:  "Use to force http to redirect to https",
 					EnvVar: "SPARGE_HTTPS_REDIRECT",
+				},
+				cli.StringFlag{
+					Name: "log-format",
+					Value: `{"time":"${time_rfc3339_nano}","id":"${id}","remote_ip":"${remote_ip}","host":"${host}",` +
+						`"method":"${method}","uri":"${uri}","status":${status}, "latency":${latency},` +
+						`"latency_human":"${latency_human}","bytes_in":${bytes_in},` +
+						`"bytes_out":${bytes_out}}`,
+					Usage:  "Specify the log format",
+					EnvVar: "SPARGE_LOG_FORMAT",
 				},
 			},
 		},

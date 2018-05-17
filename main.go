@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -22,6 +23,7 @@ _______________________________/__\__\__\
                                \__/__/__/
 
 `
+	timeout = "620s"
 )
 
 // version set by LDFLAGS
@@ -45,6 +47,8 @@ func start(root string, port int, redirectHttps bool, logFormat string) {
 		HTML5:  true,
 		Browse: false,
 	}))
+	timeOut, _ := time.ParseDuration("620s")
+	e.Server.IdleTimeout = timeOut
 
 	fmt.Printf(banner, "v"+version)
 	fmt.Printf("» http server started on port %d\n", port)

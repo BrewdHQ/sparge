@@ -23,7 +23,7 @@ _______________________________/__\__\__\
                                \__/__/__/
 
 `
-	timeout = "620s"
+	timeoutInSeconds = "620s"
 )
 
 // version set by LDFLAGS
@@ -47,7 +47,7 @@ func start(root string, port int, redirectHttps bool, logFormat string) {
 		HTML5:  true,
 		Browse: false,
 	}))
-	timeOut, _ := time.ParseDuration("620s")
+	timeOut, _ := time.ParseDuration(timeoutInSeconds)
 	e.Server.IdleTimeout = timeOut
 
 	fmt.Printf(banner, "v"+version)
